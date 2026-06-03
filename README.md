@@ -1,69 +1,49 @@
 # need-reader-skill
 
-Agent skill for processing inline `need:` prompts in Markdown documents.
+Three Codex/Cursor skills for managing inline `need:` notes in Markdown.
 
-When you write technical notes with embedded questions like `need: 解释成大白话`, this skill tells the agent to:
+## Skills
 
-- Extract each `need:` and answer it in a structured **Need card**
-- Keep top-level needs as standalone cards at their original position
-- Nest follow-up needs as sub-cards inside parent Need blocks
-- Append a **Need 处理清单** checklist when done
+| Skill | Purpose |
+| --- | --- |
+| `need-reader` | Expand inline `need:` / `need：` prompts into red Need cards. |
+| `need-reader-clear` | Turn completed Need cards from red to green when their block contains `done:` / `done：`. |
+| `need-reader-check` | List remaining red Need cards with file and line jump targets. |
+
+## Layout
+
+```text
+SKILL.md
+skills/
+  need-reader/
+    SKILL.md
+    Relationship.md
+  need-reader-check/
+    SKILL.md
+    Relationship.md
+  need-reader-clear/
+    SKILL.md
+    Relationship.md
+```
+
+The root `SKILL.md` is kept as a compatibility entry for the original `need-reader` skill. The full three-skill workflow lives under `skills/`.
 
 ## Install
 
-### Cursor / Codex (recommended)
+Install the repository, or copy the three folders under `skills/` into your local skills directory:
 
 ```bash
-npx skills add wuluoluoda/need-reader-skill
+mkdir -p ~/.codex/skills
+cp -R skills/need-reader ~/.codex/skills/
+cp -R skills/need-reader-check ~/.codex/skills/
+cp -R skills/need-reader-clear ~/.codex/skills/
 ```
 
-### Manual
+## Workflow
 
-Copy `SKILL.md` into your skills directory:
-
-```bash
-# Cursor
-mkdir -p ~/.cursor/skills/need-reader
-cp SKILL.md ~/.cursor/skills/need-reader/
-
-# Codex
-mkdir -p ~/.codex/skills/need-reader
-cp SKILL.md ~/.codex/skills/need-reader/
-```
-
-## Usage
-
-Attach the skill or invoke it in chat:
-
-```text
-/need-reader @your-document.md
-```
-
-Or mention it when a Markdown file contains `need:` markers you want processed.
-
-## Card format
-
-Top-level:
-
-```md
----
-
-> **🔴 Need-01 | Title**
->
-> Answer in plain language.
->
-> - Point 1
-> - Point 2
-```
-
-Nested (inside an existing Need block):
-
-```md
->>> **🔴 Need-01.1 | 追问：follow-up question**
->>>
->>> - Point 1
->>> - Point 2
-```
+1. Run `need-reader` to expand new inline `need:` notes.
+2. Add `done:` inside a completed Need card, then run `need-reader-clear`.
+3. Run `need-reader-check` to list remaining red Need cards.
 
 ## License
 
