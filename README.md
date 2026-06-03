@@ -7,7 +7,7 @@ Three Codex/Cursor skills for managing inline `need:` notes in Markdown.
 | Skill | Purpose |
 | --- | --- |
 | `need-reader` | Expand inline `need:` / `need：` prompts into red Need cards. |
-| `need-reader-clear` | Turn completed Need cards from red to green when their block contains `done:` / `done：`. |
+| `need-reader-clear` | Turn completed Need cards from red to green with `done:` / `done：`, or clear a parent/current/child group with `donest:`. |
 | `need-reader-check` | List remaining red Need cards with file and line jump targets. |
 
 ## Layout
@@ -42,7 +42,7 @@ cp -R skills/need-reader-clear ~/.codex/skills/
 ## Workflow
 
 1. Run `need-reader` to expand new inline `need:` notes.
-2. Add `done:` inside a completed Need card, then run `need-reader-clear`.
+2. Add `done:` inside one completed Need card, or `donest:` when the whole parent/current/child Need group is complete, then run `need-reader-clear`.
 3. Run `need-reader-check` to list remaining red Need cards.
 
 ## License
