@@ -23,7 +23,7 @@ disable-model-invocation: true
 ```md
 ---
 
-> **🔴 Need-01 | 标题**
+> **🔴 Need-01 | 标题** | 原 prompt（...）
 >
 > 一句自然语言说明。
 >
@@ -34,7 +34,7 @@ disable-model-invocation: true
  4. 如果新的 `need:` / `need：` 出现在已有 Need 块里，就在那个位置展开成子卡片，不要移到父块末尾，也不要平铺到外层。
  5. 子卡片用块内块表示，`Need-` 前必须加 `🔴 `，默认格式如下：
 ```md
->>> **🔴 Need-01.1 | 追问：一句话**
+>>> **🔴 Need-01.1 | 追问：一句话** | 原 prompt（...）
 >>>
 >>> - 要点 1
 >>> - 要点 2
@@ -44,7 +44,8 @@ disable-model-invocation: true
  7. 只有确实需要时才补"证据"、"阅读顺序"、"待确认"。
  8. 证据不足时写"无法确认"或"待确认"，不要编造。
  9. 处理完后补一份 ## Need 处理清单。
- 10. 对“做什么”类 `need:` / `need：`，即使已完成正文改写，也要在原位置保留 Need 块，记录原 prompt 和处理结果；不要只在清单里记录。
+ 10. Need 标题行后追加 `| 原 prompt（...）`，内容照抄 `need:` / `need：` 冒号后的原始文本；标题可自行提炼，不要求与原 prompt 一致。
+ 11. 对“做什么”类 `need:` / `need：`，即使已完成正文改写，也要在原位置保留 Need 块，记录原 prompt 和处理结果；不要只在清单里记录。
 ## 自检：
  * 所有 `need:` / `need：` 都处理了
  * 红球还在
@@ -61,7 +62,7 @@ disable-model-invocation: true
 
 ---
 
-> **🔴 Need-01 | 解释成大白话**
+> **🔴 Need-01 | 解释成大白话** | 原 prompt（解释成大白话。）
 >
 > 这条链路...
 
@@ -75,7 +76,7 @@ disable-model-invocation: true
 > **🔴 Need-01 | 谁在决定 shardId**
 > 这里先给出一轮解释。
 >
->>> **🔴 Need-01.1 | 追问：为什么 Mapper 不自己算？**
+>>> **🔴 Need-01.1 | Mapper 不自行计算的原因** | 原 prompt（为什么 Mapper 不自己算？）
 >>>
 >>> - 因为 Mapper 只能...
 >>> - 真正决定 shardId 的还是执行器。
